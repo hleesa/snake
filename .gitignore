@@ -1,0 +1,11 @@
+# CLion files
+.idea/
+
+# CMake build files
+cmake-build-*/
+
+# macOS files
+.DS_Store
+
+# Executable files
+wxwidgets_clion_project
