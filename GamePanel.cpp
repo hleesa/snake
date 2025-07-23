@@ -25,6 +25,18 @@ GamePanel::~GamePanel()
 // 키보드 이벤트: 눌린 키 정보를 m_keyStatus에 저장하고 화면 갱신
 void GamePanel::OnKeyDown(wxKeyEvent& event)
 {
+    switch (event.GetKeyCode()) {
+        case WXK_UP:
+            break;
+        case WXK_DOWN:
+            break;
+        case WXK_LEFT:
+            break;
+        case WXK_RIGHT:
+            break;
+        default:
+            break;
+    }
     m_keyStatus = wxString::Format("Key Pressed: %c", (char)event.GetKeyCode());
     Refresh();
 }
@@ -40,6 +52,7 @@ void GamePanel::OnTimer(wxTimerEvent& event)
 void GamePanel::OnPaint(wxPaintEvent& event)
 {
     wxPaintDC dc(this);
-    dc.DrawPoint(m_dotPos);
-    dc.DrawText(m_keyStatus, wxPoint(20, 50));
+    dc.SetBrush(*wxRED_BRUSH);
+    dc.SetPen(*wxTRANSPARENT_PEN);
+    dc.DrawRectangle(100, 100, 10, 10);
 }
