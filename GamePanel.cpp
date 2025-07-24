@@ -1,8 +1,12 @@
 #include "GamePanel.h"
+#include "Config.h"
 
 GamePanel::GamePanel(wxFrame* parent)
-    : wxPanel(parent, wxID_ANY)
-{
+        : wxPanel(parent, wxID_ANY),
+          board(std::vector<CellType>(BOARD_WIDTH * BOARD_HEIGHT, CellType::EMPTY)) {
+
+    board[0] = CellType::SNAKE;
+
     SetBackgroundStyle(wxBG_STYLE_PAINT);
 
     Bind(wxEVT_KEY_DOWN, &GamePanel::OnKeyDown, this);
@@ -13,7 +17,7 @@ GamePanel::GamePanel(wxFrame* parent)
     m_keyStatus = "Press any key";
 
     m_timer = new wxTimer(this, 1);
-    m_timer->Start(1000); // 1초마다 OnTimer 호출
+    m_timer->Start(100); // 1초마다 OnTimer 호출
 }
 
 GamePanel::~GamePanel()
@@ -27,13 +31,19 @@ void GamePanel::OnKeyDown(wxKeyEvent& event)
 {
     switch (event.GetKeyCode()) {
         case WXK_UP:
+            snake.setDirection(Direction::UP);
             break;
         case WXK_DOWN:
+            snake.setDirection(Direction::DOWN);
             break;
         case WXK_LEFT:
+            snake.setDirection(Direction::LEFT);
             break;
         case WXK_RIGHT:
+            snake.setDirection(Direction::RIGHT);
             break;
+        case WXK_ESCAPE:
+            GetParent()->Close(true);
         default:
             break;
     }
@@ -44,7 +54,7 @@ void GamePanel::OnKeyDown(wxKeyEvent& event)
 // 타이머 이벤트: 점의 x좌표를 5씩 이동시키고 화면 갱신
 void GamePanel::OnTimer(wxTimerEvent& event)
 {
-    m_dotPos.x += 5;
+    snake.move(board);
     Refresh();
 }
 
@@ -52,7 +62,16 @@ void GamePanel::OnTimer(wxTimerEvent& event)
 void GamePanel::OnPaint(wxPaintEvent& event)
 {
     wxPaintDC dc(this);
-    dc.SetBrush(*wxRED_BRUSH);
-    dc.SetPen(*wxTRANSPARENT_PEN);
-    dc.DrawRectangle(100, 100, 10, 10);
+    for(int y = 0; y < BOARD_HEIGHT; ++y){
+        for(int x = 0; x < BOARD_WIDTH; ++x){
+            if (board[y * BOARD_WIDTH + x] == CellType::SNAKE) {
+                dc.SetBrush(*wxRED_BRUSH);
+                dc.SetPen(*wxTRANSPARENT_PEN);
+                dc.DrawRectangle(x * CELL_WIDTH, y * CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT);
+            }
+        }
+    }
+//    dc.SetBrush(*wxRED_BRUSH);
+//    dc.SetPen(*wxTRANSPARENT_PEN);
+//    dc.DrawRectangle(100, 100, 10, 10);
 }

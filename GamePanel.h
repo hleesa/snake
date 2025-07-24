@@ -2,6 +2,9 @@
 #define SNAKE_GAME_GAMEPANEL_H
 
 #include <wx/wx.h>
+#include <vector>
+#include "CellType.h"
+#include "Snake.h"
 
 class GamePanel : public wxPanel
 {
@@ -13,6 +16,9 @@ private:
     void OnKeyDown(wxKeyEvent& event);
     void OnTimer(wxTimerEvent& event);
     void OnPaint(wxPaintEvent& event);
+
+    Snake snake;
+    std::vector<CellType> board;
 
     wxTimer* m_timer;
     wxPoint m_dotPos;      // 타이머로 움직일 점의 위치

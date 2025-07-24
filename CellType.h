@@ -1,0 +1,16 @@
+//
+// Created by LSH on 2025. 7. 23..
+//
+
+#ifndef WXWIDGETS_CLION_PROJECT_CELLTYPE_H
+#define WXWIDGETS_CLION_PROJECT_CELLTYPE_H
+
+enum class CellType {
+    EMPTY,
+    SNAKE,
+    APPLE,
+    WALL
+};
+
+
+#endif //WXWIDGETS_CLION_PROJECT_CELLTYPE_H
