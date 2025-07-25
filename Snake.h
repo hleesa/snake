@@ -21,6 +21,9 @@ public:
 private:
     std::deque<int> body;
     Direction direction;
+    int size;
+
+    void eat();
 
 };
 

@@ -1,5 +1,6 @@
 #include "GamePanel.h"
 #include "Config.h"
+#include "Wall.h"
 
 GamePanel::GamePanel(wxFrame* parent)
         : wxPanel(parent, wxID_ANY),
@@ -12,10 +13,11 @@ GamePanel::GamePanel(wxFrame* parent)
     Bind(wxEVT_KEY_DOWN, &GamePanel::OnKeyDown, this);
     Bind(wxEVT_TIMER, &GamePanel::OnTimer, this);
     Bind(wxEVT_PAINT, &GamePanel::OnPaint, this);
+//
+//    m_dotPos = wxPoint(20, 20);
+//    m_keyStatus = "Press any key";
 
-    m_dotPos = wxPoint(20, 20);
-    m_keyStatus = "Press any key";
-
+    Wall::initWall(board);
     m_timer = new wxTimer(this, 1);
     m_timer->Start(100); // 1초마다 OnTimer 호출
 }
@@ -64,10 +66,17 @@ void GamePanel::OnPaint(wxPaintEvent& event)
     wxPaintDC dc(this);
     for(int y = 0; y < BOARD_HEIGHT; ++y){
         for(int x = 0; x < BOARD_WIDTH; ++x){
-            if (board[y * BOARD_WIDTH + x] == CellType::SNAKE) {
-                dc.SetBrush(*wxRED_BRUSH);
-                dc.SetPen(*wxTRANSPARENT_PEN);
-                dc.DrawRectangle(x * CELL_WIDTH, y * CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT);
+            switch (board[y * BOARD_WIDTH + x]) {
+                case CellType::SNAKE:
+                    dc.SetBrush(*wxRED_BRUSH);
+                    dc.SetPen(*wxTRANSPARENT_PEN);
+                    dc.DrawRectangle(x * CELL_WIDTH, y * CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT);
+                    break;
+                case CellType::WALL:
+                    dc.SetBrush(*wxBLUE_BRUSH);
+                    dc.SetPen(*wxTRANSPARENT_PEN);
+                    dc.DrawRectangle(x * CELL_WIDTH, y * CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT);
+                    break;
             }
         }
     }

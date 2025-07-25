@@ -9,7 +9,7 @@ enum class CellType {
     EMPTY,
     SNAKE,
     APPLE,
-    WALL
+    WALL,
 };
 
 
