@@ -16,11 +16,11 @@ add_executable(wxwidgets_clion_project
         CellType.h
         Snake.cpp
         Direction.h
-        Wall.h
-        Wall.cpp
         Apple.h
         Apple.cpp
         RandomGenerator.h
-        RandomGenerator.cpp)
+        RandomGenerator.cpp
+        GameBoard.h
+        GameBoard.cpp)
 
 target_link_libraries(wxwidgets_clion_project ${wxWidgets_LIBRARIES})

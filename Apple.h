@@ -18,6 +18,8 @@ public:
 
     static void init(std::vector<CellType>& board);
 
+//    static int
+
 private:
 
 };

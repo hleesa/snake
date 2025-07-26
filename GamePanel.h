@@ -4,6 +4,7 @@
 #include <wx/wx.h>
 #include <vector>
 #include "CellType.h"
+#include "GameBoard.h"
 #include "Snake.h"
 
 class GamePanel : public wxPanel
@@ -17,8 +18,9 @@ private:
     void OnTimer(wxTimerEvent& event);
     void OnPaint(wxPaintEvent& event);
 
+
+    GameBoard board;
     Snake snake;
-    std::vector<CellType> board;
 
     wxTimer* m_timer;
     wxPoint m_dotPos;      // 타이머로 움직일 점의 위치

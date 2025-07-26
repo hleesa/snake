@@ -1,24 +1,20 @@
 #include "GamePanel.h"
 #include "Config.h"
-#include "Wall.h"
 #include "Apple.h"
 
 GamePanel::GamePanel(wxFrame* parent)
-        : wxPanel(parent, wxID_ANY),
-          board(std::vector<CellType>(BOARD_WIDTH * BOARD_HEIGHT, CellType::EMPTY)) {
+        : wxPanel(parent, wxID_ANY) {
 
-    board[0] = CellType::SNAKE;
+    board.setCell(0, CellType::SNAKE);
 
     SetBackgroundStyle(wxBG_STYLE_PAINT);
 
     Bind(wxEVT_KEY_DOWN, &GamePanel::OnKeyDown, this);
     Bind(wxEVT_TIMER, &GamePanel::OnTimer, this);
     Bind(wxEVT_PAINT, &GamePanel::OnPaint, this);
-//
-//    m_dotPos = wxPoint(20, 20);
-//    m_keyStatus = "Press any key";
 
-    Wall::init(board);
+    board.initWall();
+
     Apple::init(board);
 
     m_timer = new wxTimer(this, 1);
