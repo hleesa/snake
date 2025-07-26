@@ -6,10 +6,10 @@
 #include "Wall.h"
 #include "CellType.h"
 
-void Wall::initWall(std::vector<CellType>& board) {
+void Wall::init(std::vector<CellType>& board) {
     for (int x = 0; x < BOARD_WIDTH; ++x) {
         board[x] = CellType::WALL;
-        board[BOARD_WIDTH * (BOARD_HEIGHT - 4) + x] = CellType::WALL;
+        board[BOARD_WIDTH * (BOARD_HEIGHT - 1) + x] = CellType::WALL;
     }
     for(int y = 0 ;y < BOARD_HEIGHT; ++y){
         board[y * BOARD_WIDTH] = CellType::WALL;

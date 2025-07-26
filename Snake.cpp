@@ -7,7 +7,7 @@
 #include "Direction.h"
 #include "Config.h"
 
-Snake::Snake() : body(std::deque<int>(1, BOARD_WIDTH + 1)), direction(Direction::DOWN), size(0) {
+Snake::Snake() : body(std::deque<int>(1, BOARD_WIDTH + 1)), direction(Direction::DOWN), size(1) {
 }
 
 Snake::~Snake() {

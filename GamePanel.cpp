@@ -1,6 +1,7 @@
 #include "GamePanel.h"
 #include "Config.h"
 #include "Wall.h"
+#include "Apple.h"
 
 GamePanel::GamePanel(wxFrame* parent)
         : wxPanel(parent, wxID_ANY),
@@ -17,7 +18,9 @@ GamePanel::GamePanel(wxFrame* parent)
 //    m_dotPos = wxPoint(20, 20);
 //    m_keyStatus = "Press any key";
 
-    Wall::initWall(board);
+    Wall::init(board);
+    Apple::init(board);
+
     m_timer = new wxTimer(this, 1);
     m_timer->Start(100); // 1초마다 OnTimer 호출
 }
@@ -76,6 +79,13 @@ void GamePanel::OnPaint(wxPaintEvent& event)
                     dc.SetBrush(*wxBLUE_BRUSH);
                     dc.SetPen(*wxTRANSPARENT_PEN);
                     dc.DrawRectangle(x * CELL_WIDTH, y * CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT);
+                    break;
+                case CellType::APPLE:
+                    dc.SetBrush(*wxGREEN_BRUSH);
+                    dc.SetPen(*wxTRANSPARENT_PEN);
+                    dc.DrawRectangle(x * CELL_WIDTH, y * CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT);
+                    break;
+                case CellType::EMPTY:
                     break;
             }
         }

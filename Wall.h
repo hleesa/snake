@@ -15,7 +15,7 @@ public:
 
     ~Wall();
 
-    static void initWall(std::vector<CellType>& board);
+    static void init(std::vector<CellType>& board);
 
 private:
 
