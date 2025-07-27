@@ -48,7 +48,7 @@ int Snake::move(const std::vector<CellType>& board) {
     else {
         body.pop_back();
     }
-
     body.push_front(newSnakePosition);
+
     return newSnakePosition;
 }
