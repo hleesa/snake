@@ -6,6 +6,7 @@
 #include "CellType.h"
 #include "GameBoard.h"
 #include "Snake.h"
+#include "Apple.h"
 
 class GamePanel : public wxPanel
 {
@@ -20,6 +21,7 @@ private:
 
 
     GameBoard board;
+    Apple apple;
     Snake snake;
 
     wxTimer* m_timer;

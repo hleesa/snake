@@ -20,6 +20,8 @@ public:
 
     void setCell(int i, CellType type);
 
+    std::vector<CellType> getCells() const;
+
 private:
 
     std::vector<CellType> cells;

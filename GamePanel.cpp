@@ -15,7 +15,10 @@ GamePanel::GamePanel(wxFrame* parent)
 
     board.initWall();
 
-    Apple::init(board);
+    apple.init(board.getCells());
+    for (auto p: apple.getPositions()) {
+        board.setCell(p, CellType::APPLE);
+    }
 
     m_timer = new wxTimer(this, 1);
     m_timer->Start(100); // 1초마다 OnTimer 호출
@@ -55,7 +58,14 @@ void GamePanel::OnKeyDown(wxKeyEvent& event)
 // 타이머 이벤트: 점의 x좌표를 5씩 이동시키고 화면 갱신
 void GamePanel::OnTimer(wxTimerEvent& event)
 {
-    snake.move(board);
+    int snakeTail = snake.getTail();
+    int newSnakeHead = snake.move(board.getCells());
+
+    if (newSnakeHead == 1) {
+        return;
+    }
+    board.setCell(newSnakeHead, CellType::SNAKE);
+    board.setCell(snakeTail, CellType::EMPTY);
     Refresh();
 }
 
@@ -65,7 +75,7 @@ void GamePanel::OnPaint(wxPaintEvent& event)
     wxPaintDC dc(this);
     for(int y = 0; y < BOARD_HEIGHT; ++y){
         for(int x = 0; x < BOARD_WIDTH; ++x){
-            switch (board[y * BOARD_WIDTH + x]) {
+            switch (board.getCells()[y * BOARD_WIDTH + x]) {
                 case CellType::SNAKE:
                     dc.SetBrush(*wxRED_BRUSH);
                     dc.SetPen(*wxTRANSPARENT_PEN);

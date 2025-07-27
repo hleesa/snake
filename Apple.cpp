@@ -6,7 +6,17 @@
 #include "RandomGenerator.h"
 #include "Config.h"
 
-void Apple::init(std::vector<CellType>& board) {
+Apple::Apple() {
+}
+
+Apple::~Apple() {
+}
+
+std::set<int> Apple::getPositions() const {
+    return positions;
+}
+
+void Apple::init(const std::vector<CellType>& board) {
     for (int i = 0; i < 10; ++i) {
         int boardIndex = -1;
         do {
@@ -14,6 +24,7 @@ void Apple::init(std::vector<CellType>& board) {
             int x = RandomGenerator::getint(1, BOARD_HEIGHT - 1);
             boardIndex = y * BOARD_WIDTH + x;
         } while (board[boardIndex] != CellType::EMPTY);
-        board[boardIndex] = CellType::APPLE;
+        positions.insert(boardIndex);
+
     }
 }

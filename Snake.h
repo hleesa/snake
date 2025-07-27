@@ -16,7 +16,9 @@ public:
 
     bool setDirection(Direction direction_);
 
-    bool move(std::vector<CellType>& borad);
+    int move(const std::vector<CellType>& board);
+
+    int getTail() const;
 
 private:
     std::deque<int> body;

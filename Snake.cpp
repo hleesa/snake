@@ -22,7 +22,11 @@ void Snake::eat() {
     ++size;
 }
 
-bool Snake::move(std::vector<CellType>& board) {
+int Snake::getTail() const {
+    return body.back();
+}
+
+int Snake::move(const std::vector<CellType>& board) {
     const int dx[] = {0, 0, -1, 1};
     const int dy[] = {-1, 1, 0, 0};
     int x = body.front() % BOARD_WIDTH;
@@ -31,21 +35,20 @@ bool Snake::move(std::vector<CellType>& board) {
     int ny = y + dy[static_cast<int>(direction)];
 
     if (nx < 0 || nx >= BOARD_WIDTH || ny < 0 || ny >= BOARD_HEIGHT) {
-        return false;
+        return -1;
     }
-    int newBoardIndex = ny * BOARD_WIDTH + nx;
-    if (board[newBoardIndex] == CellType::SNAKE || board[newBoardIndex] == CellType::WALL) {
-        return false;
+    int newSnakePosition = ny * BOARD_WIDTH + nx;
+    if (board[newSnakePosition] == CellType::SNAKE || board[newSnakePosition] == CellType::WALL) {
+        return -1;
     }
-    else if (board[newBoardIndex] == CellType::APPLE) {
+    else if (board[newSnakePosition] == CellType::APPLE) {
         eat();
     }
+
     body.push_front(ny * BOARD_WIDTH + nx);
-    board[ny * BOARD_WIDTH + nx] = CellType::SNAKE;
     if (body.size() > size) {
-        board[body.back()] = CellType::EMPTY;
         body.pop_back();
     }
 
-    return true;
+    return newSnakePosition;
 }

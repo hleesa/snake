@@ -8,6 +8,9 @@
 GameBoard::GameBoard() : cells(std::vector<CellType>(BOARD_WIDTH * BOARD_HEIGHT, CellType::EMPTY)) {
 }
 
+GameBoard::~GameBoard() {
+}
+
 void GameBoard::initWall() {
     for (int x = 0; x < BOARD_WIDTH; ++x) {
         cells[x] = CellType::WALL;
@@ -21,4 +24,8 @@ void GameBoard::initWall() {
 
 void GameBoard::setCell(int i, CellType type) {
     cells[i] = type;
+}
+
+std::vector<CellType> GameBoard::getCells() const {
+    return cells;
 }

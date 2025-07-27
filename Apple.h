@@ -8,6 +8,7 @@
 #include "CellType.h"
 #include <vector>
 #include "RandomGenerator.h"
+#include "set"
 
 class Apple {
 
@@ -16,11 +17,13 @@ public:
 
     ~Apple();
 
-    static void init(std::vector<CellType>& board);
+    void init(const std::vector<CellType>& board);
 
-//    static int
+    std::set<int> getPositions() const;
 
 private:
+
+    std::set<int> positions;
 
 };
 
