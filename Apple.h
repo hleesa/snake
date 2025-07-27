@@ -21,6 +21,10 @@ public:
 
     std::set<int> getPositions() const;
 
+    int create(const std::vector<CellType>& board);
+
+    void erase(int apple);
+
 private:
 
     std::set<int> positions;

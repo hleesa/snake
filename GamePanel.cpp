@@ -58,14 +58,20 @@ void GamePanel::OnKeyDown(wxKeyEvent& event)
 // 타이머 이벤트: 점의 x좌표를 5씩 이동시키고 화면 갱신
 void GamePanel::OnTimer(wxTimerEvent& event)
 {
-    int snakeTail = snake.getTail();
+    int beforeSnakeTail = snake.getTail();
     int newSnakeHead = snake.move(board.getCells());
 
     if (newSnakeHead == -1) {
         return;
     }
+
+    CellType type = board.getType(newSnakeHead);
+    if (type == CellType::APPLE) {
+        board.setCell(apple.create(board.getCells()), CellType::APPLE);
+        apple.erase(newSnakeHead);
+    }
     board.setCell(newSnakeHead, CellType::SNAKE);
-    board.setCell(snakeTail, CellType::EMPTY);
+    board.setCell(beforeSnakeTail, CellType::EMPTY);
     Refresh();
 }
 

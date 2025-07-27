@@ -29,3 +29,7 @@ void GameBoard::setCell(int i, CellType type) {
 std::vector<CellType> GameBoard::getCells() const {
     return cells;
 }
+
+CellType GameBoard::getType(int i) const {
+    return cells[i];
+}

@@ -20,12 +20,13 @@ public:
 
     int getTail() const;
 
+
 private:
     std::deque<int> body;
     Direction direction;
     int size;
+    void eat(int i);
 
-    void eat();
 
 };
 

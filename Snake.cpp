@@ -18,7 +18,7 @@ bool Snake::setDirection(Direction direction_) {
     return true;
 }
 
-void Snake::eat() {
+void Snake::eat(int i) {
     ++size;
 }
 
@@ -41,14 +41,14 @@ int Snake::move(const std::vector<CellType>& board) {
     if (board[newSnakePosition] == CellType::SNAKE || board[newSnakePosition] == CellType::WALL) {
         return -1;
     }
-    else if (board[newSnakePosition] == CellType::APPLE) {
-        eat();
-    }
 
-    body.push_front(ny * BOARD_WIDTH + nx);
-    if (body.size() > size) {
+    if (board[newSnakePosition] == CellType::APPLE) {
+        eat(newSnakePosition);
+    }
+    else {
         body.pop_back();
     }
 
+    body.push_front(newSnakePosition);
     return newSnakePosition;
 }

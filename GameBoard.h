@@ -22,6 +22,8 @@ public:
 
     std::vector<CellType> getCells() const;
 
+    CellType getType(int i) const;
+
 private:
 
     std::vector<CellType> cells;
