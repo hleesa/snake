@@ -18,6 +18,7 @@ public:
 
     int move(const std::vector<CellType>& board);
 
+    int getHead() const;
     int getTail() const;
 
 
@@ -26,8 +27,7 @@ private:
     Direction direction;
     int size;
     void eat();
-
-
+    void die();
 };
 
 

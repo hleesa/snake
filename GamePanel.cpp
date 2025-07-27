@@ -4,9 +4,6 @@
 
 GamePanel::GamePanel(wxFrame* parent)
         : wxPanel(parent, wxID_ANY) {
-
-    board.setCell(0, CellType::SNAKE);
-
     SetBackgroundStyle(wxBG_STYLE_PAINT);
 
     Bind(wxEVT_KEY_DOWN, &GamePanel::OnKeyDown, this);
@@ -14,7 +11,7 @@ GamePanel::GamePanel(wxFrame* parent)
     Bind(wxEVT_PAINT, &GamePanel::OnPaint, this);
 
     board.initWall();
-
+    board.setCell(snake.getHead(), CellType::SNAKE);
     apple.init(board.getCells());
     for (auto p: apple.getPositions()) {
         board.setCell(p, CellType::APPLE);

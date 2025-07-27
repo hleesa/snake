@@ -5,8 +5,15 @@
 #include "Snake.h"
 #include "Direction.h"
 #include "Config.h"
+#include "RandomGenerator.h"
 
-Snake::Snake() : body(std::deque<int>(1, BOARD_WIDTH + 1)), direction(Direction::DOWN), size(1) {
+Snake::Snake() : size(1) {
+    int position[4] = {(BOARD_HEIGHT - 2) * BOARD_WIDTH + BOARD_WIDTH / 2, BOARD_WIDTH * 1 + BOARD_WIDTH / 2,
+                       BOARD_HEIGHT / 2 * BOARD_WIDTH + BOARD_WIDTH - 2, BOARD_HEIGHT / 2 * BOARD_WIDTH + 1};
+
+    int d = RandomGenerator::getint(0, 3);
+    body = std::deque<int>(1, position[d]);
+    direction = static_cast<Direction>(d);
 }
 
 Snake::~Snake() {
@@ -21,6 +28,12 @@ void Snake::eat() {
     ++size;
 }
 
+void Snake::die() {
+}
+
+int Snake::getHead() const {
+    return body.front();
+}
 int Snake::getTail() const {
     return body.back();
 }
@@ -42,7 +55,7 @@ int Snake::move(const std::vector<CellType>& board) {
     }
 
     if (board[newSnakePosition] == CellType::APPLE) {
-        eat(newSnakePosition);
+        eat();
     }
     else {
         body.pop_back();

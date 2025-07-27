@@ -21,8 +21,8 @@ private:
 
 
     GameBoard board;
-    Apple apple;
     Snake snake;
+    Apple apple;
 
     wxTimer* m_timer;
     wxString m_keyStatus;  // 키보드 입력 상태를 표시할 문자열
