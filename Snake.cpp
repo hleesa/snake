@@ -2,7 +2,6 @@
 // Created by LSH on 2025. 7. 23..
 //
 
-#include <wx/wx.h>
 #include "Snake.h"
 #include "Direction.h"
 #include "Config.h"
