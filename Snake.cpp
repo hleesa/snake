@@ -17,7 +17,7 @@ bool Snake::setDirection(Direction direction_) {
     return true;
 }
 
-void Snake::eat(int i) {
+void Snake::eat() {
     ++size;
 }
 
