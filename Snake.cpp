@@ -33,11 +33,11 @@ int Snake::move(const std::vector<CellType>& board) {
     int y = body.front() / BOARD_WIDTH;
     int nx = x + dx[static_cast<int>(direction)];
     int ny = y + dy[static_cast<int>(direction)];
+    int newSnakePosition = ny * BOARD_WIDTH + nx;
 
     if (nx < 0 || nx >= BOARD_WIDTH || ny < 0 || ny >= BOARD_HEIGHT) {
         return -1;
     }
-    int newSnakePosition = ny * BOARD_WIDTH + nx;
     if (board[newSnakePosition] == CellType::SNAKE || board[newSnakePosition] == CellType::WALL) {
         return -1;
     }
