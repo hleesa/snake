@@ -18,7 +18,7 @@ std::set<int> Apple::getPositions() const {
 
 void Apple::init(const std::vector<CellType>& board) {
     for (int i = 0; i < 10; ++i) {
-        int apple = create(board);
+        create(board);
     }
 }
 

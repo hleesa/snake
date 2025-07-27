@@ -25,7 +25,6 @@ private:
     Snake snake;
 
     wxTimer* m_timer;
-    wxPoint m_dotPos;      // 타이머로 움직일 점의 위치
     wxString m_keyStatus;  // 키보드 입력 상태를 표시할 문자열
 };
 

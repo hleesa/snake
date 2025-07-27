@@ -30,7 +30,7 @@ GamePanel::~GamePanel()
     delete m_timer;
 }
 
-// 키보드 이벤트: 눌린 키 정보를 m_keyStatus에 저장하고 화면 갱신
+// 키보드 이벤트:
 void GamePanel::OnKeyDown(wxKeyEvent& event)
 {
     switch (event.GetKeyCode()) {
@@ -55,7 +55,7 @@ void GamePanel::OnKeyDown(wxKeyEvent& event)
     Refresh();
 }
 
-// 타이머 이벤트: 점의 x좌표를 5씩 이동시키고 화면 갱신
+// 타이머 이벤트:
 void GamePanel::OnTimer(wxTimerEvent& event)
 {
     int beforeSnakeTail = snake.getTail();
@@ -102,7 +102,4 @@ void GamePanel::OnPaint(wxPaintEvent& event)
             }
         }
     }
-//    dc.SetBrush(*wxRED_BRUSH);
-//    dc.SetPen(*wxTRANSPARENT_PEN);
-//    dc.DrawRectangle(100, 100, 10, 10);
 }
