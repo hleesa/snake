@@ -61,7 +61,7 @@ void GamePanel::OnTimer(wxTimerEvent& event)
     int snakeTail = snake.getTail();
     int newSnakeHead = snake.move(board.getCells());
 
-    if (newSnakeHead == 1) {
+    if (newSnakeHead == -1) {
         return;
     }
     board.setCell(newSnakeHead, CellType::SNAKE);
