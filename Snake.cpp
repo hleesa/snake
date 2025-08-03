@@ -6,6 +6,7 @@
 #include "Direction.h"
 #include "Config.h"
 #include "RandomGenerator.h"
+#include <deque>
 
 Snake::Snake() : size(1) {
     int position[4] = {(BOARD_HEIGHT - 2) * BOARD_WIDTH + BOARD_WIDTH / 2, BOARD_WIDTH * 1 + BOARD_WIDTH / 2,
@@ -28,7 +29,8 @@ void Snake::eat() {
     ++size;
 }
 
-void Snake::die() {
+void Snake::clear() {
+    body.clear();
 }
 
 int Snake::getHead() const {
@@ -36,6 +38,10 @@ int Snake::getHead() const {
 }
 int Snake::getTail() const {
     return body.back();
+}
+
+std::deque<int> Snake::getBody() const{
+    return body;
 }
 
 int Snake::move(const std::vector<CellType>& board) {

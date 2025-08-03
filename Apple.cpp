@@ -36,3 +36,7 @@ int Apple::create(const std::vector<CellType>& board) {
 void Apple::erase(int apple) {
     positions.erase(apple);
 }
+
+void Apple::clear(){
+    positions.clear();
+}

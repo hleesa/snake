@@ -7,6 +7,8 @@
 
 #include <vector>
 #include "CellType.h"
+#include "Snake.h"
+#include "Apple.h"
 
 class GameBoard {
 
@@ -23,6 +25,8 @@ public:
     std::vector<CellType> getCells() const;
 
     CellType getType(int i) const;
+
+    void clear(const Snake& snake, const Apple& apple);
 
 private:
 

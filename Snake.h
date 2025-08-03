@@ -20,14 +20,15 @@ public:
 
     int getHead() const;
     int getTail() const;
-
+    std::deque<int> getBody() const;
+    void clear();
 
 private:
     std::deque<int> body;
     Direction direction;
     int size;
     void eat();
-    void die();
+
 };
 
 

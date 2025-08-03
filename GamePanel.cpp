@@ -59,6 +59,11 @@ void GamePanel::OnTimer(wxTimerEvent& event)
     int newSnakeHead = snake.move(board.getCells());
 
     if (newSnakeHead == -1) {
+        board.clear(snake, apple);
+        snake.clear();
+        apple.clear();
+        m_timer->Stop();
+        Refresh();
         return;
     }
 

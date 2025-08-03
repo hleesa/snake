@@ -33,3 +33,12 @@ std::vector<CellType> GameBoard::getCells() const {
 CellType GameBoard::getType(int i) const {
     return cells[i];
 }
+
+void GameBoard::clear(const Snake& snake, const Apple& apple){
+    for(int body :  snake.getBody()){
+        setCell(body, CellType::EMPTY);
+    }
+    for (int ap: apple.getPositions()) {
+        setCell(ap, CellType::EMPTY);
+    }
+}

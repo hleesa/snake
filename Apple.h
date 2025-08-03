@@ -8,7 +8,7 @@
 #include "CellType.h"
 #include <vector>
 #include "RandomGenerator.h"
-#include "set"
+#include <set>
 
 class Apple {
 
@@ -24,6 +24,8 @@ public:
     int create(const std::vector<CellType>& board);
 
     void erase(int apple);
+
+    void clear();
 
 private:
 
